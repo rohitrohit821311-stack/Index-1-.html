@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gaming Monthly Subscription</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(circle at top,#3b1900,#090909 55%);
+  min-height:100vh;
+  padding:18px;
+}
+
+.app{
+  max-width:440px;
+  margin:auto;
+  background:#111;
+  border:1px solid #ff8a00;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 0 35px #ff8a0028;
+}
+
+/* Top bar */
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.unofficial{
+  font-size:10px;
+  color:#ffbd70;
+  border:1px solid #704000;
+  padding:6px 8px;
+  border-radius:8px;
+}
+
+.location{
+  font-size:12px;
+  color:#ddd;
+  background:#1e1e1e;
+  border:1px solid #333;
+  padding:7px 9px;
+  border-radius:8px;
+}
+
+/* Header */
+
+.header{
+  text-align:center;
+}
+
+.logo{
+  font-size:44px;
+}
+
+h1{
+  color:#ff9800;
+  margin:5px 0;
+}
+
+.sub{
+  color:#999;
+  font-size:13px;
+}
+
+/* Balance */
+
+.balance{
+  margin:20px 0;
+  padding:18px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#282828,#151515);
+}
+
+.balance small{
+  color:#999;
+}
+
+.balance strong{
+  display:block;
+  color:#ffd166;
+  font-size:29px;
+  margin-top:5px;
+}
+
+/* Status */
+
+.status{
+  background:#182414;
+  border:1px solid #416536;
+  padding:12px;
+  border-radius:12px;
+  color:#b9e9a5;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+/* Input */
+
+label{
+  display:block;
+  color:#ddd;
+  margin-bottom:7px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  background:#202020;
+  color:#fff;
+  border:1px solid #444;
+  border-radius:10px;
+  outline:none;
+  font-size:16px;
+}
+
+input:focus{
+  border-color:#ff9800;
+  box-shadow:0 0 0 3px #ff980033;
+}
+
+/* Buttons */
+
+button{
+  cursor:pointer;
+  border:0;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+button:focus-visible,
+.pay:focus-visible{
+  outline:3px solid #ffd166;
+  outline-offset:3px;
+}
+
+.main-btn{
+  width:100%;
+  padding:14px;
+  margin-top:12px;
+  background:#ff8a00;
+  color:#111;
+  font-size:16px;
+}
+
+/* Sections */
+
+.section{
+  margin-top:22px;
+}
+
+.hidden{
+  display:none;
+}
+
+/* Profile */
+
+.profile{
+  display:flex;
+  justify-content:space-between;
+  background:#1c1c1c;
+  border-radius:13px;
+  padding:14px;
+  border:1px solid #333;
+}
+
+.profile span{
+  color:#999;
+  font-size:12px;
+}
+
+.profile strong{
+  display:block;
+  margin-top:4px;
+}
+
+.green{
+  color:#7de36b;
+}
+
+/* Plans */
+
+.plan{
+  position:relative;
+  background:#1b1b1b;
+  border:1px solid #3b3b3b;
+  border-radius:16px;
+  padding:18px;
+  margin:14px 0;
+}
+
+.plan.popular{
+  border-color:#ff9800;
+  box-shadow:0 0 20px #ff980018;
+}
+
+.badge{
+  position:absolute;
+  right:12px;
+  top:12px;
+  background:#ff8a00;
+  color:#111;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:10px;
+}
+
+.plan h2{
+  margin:0 0 12px;
+}
+
+.old{
+  text-decoration:line-through;
+  color:#777;
+}
+
+.price{
+  color:#ffad33;
+  font-size:30px;
+  font-weight:bold;
+  margin-top:3px;
+}
+
+.title{
+  color:#ddd;
+}
+
+.features{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.8;
+  margin:12px 0;
+}
+
+.plan button{
+  width:100%;
+  padding:13px;
+  background:#ff8a00;
+}
+
+/* Reward */
+
+.reward,
+.activity,
+.summary{
+  background:#191919;
+  border:1px solid #292929;
+  border-radius:14px;
+  padding:15px;
+  margin-top:15px;
+}
+
+.reward h3{
+  color:#ffd166;
+  margin:0 0 6px;
+}
+
+.reward p,
+.activity p{
+  color:#999;
+  font-size:13px;
+}
+
+/* Activity */
+
+.activity-row{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid #292929;
+  font-size:13px;
+}
+
+.activity-row:last-child{
+  border-bottom:0;
+}
+
+/* Payment */
+
+.pay{
+  background:#202020;
+  border:1px solid #444;
+  border-radius:10px;
+  padding:15px;
+  margin:10px 0;
+  cursor:pointer;
+}
+
+.pay:hover{
+  border-color:#ff9800;
+}
+
+.summary strong{
+  color:#ffad33;
+}
+
+.back{
+  width:100%;
+  padding:13px;
+  margin-top:10px;
+  background:#292929;
+  color:#fff;
+}
+
+/* Confirmation */
+
+.confirm{
+  text-align:center;
+  padding:20px;
+}
+
+.check{
+  font-size:55px;
+}
+
+.confirm h2{
+  color:#7de36b;
+}
+
+.confirm p{
+  color:#aaa;
+}
+
+.live{
+  min-height:22px;
+  margin-top:12px;
+  color:#ffd166;
+  font-size:13px;
+}
+
+.footer{
+  text-align:center;
+  color:#666;
+  font-size:10px;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+
+    <div class="unofficial">
+      Unofficial Fan Page
+    </div>
+
+    <div class="location" aria-label="Location India">
+      📍 India 🇮🇳
+    </div>
+
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+
+    <div class="logo" aria-hidden="true">🎮</div>
+
+    <h1>Gaming Pass</h1>
+
+    <p class="sub">
+      Monthly Subscription Center
+    </p>
+
+  </header>
+
+  <!-- BALANCE -->
+  <section class="balance" aria-label="Account balance">
+
+    <small>Account Balance</small>
+
+    <strong>₹26,063</strong>
+
+  </section>
+
+  <!-- STATUS -->
+  <div class="status">
+    🟢 Account Status • Active
+  </div>
+
+  <!-- UID -->
+  <section aria-labelledby="uidTitle">
+
+    <h2 id="uidTitle" style="font-size:18px">
+      Enter UID
+    </h2>
+
+    <label for="uid">
+      Free Fire UID
+    </label>
+
+    <input
+      id="uid"
+      type="text"
+      inputmode="numeric"
+      autocomplete="off"
+      placeholder="Enter your UID"
+      aria-describedby="uidHelp"
+      onkeydown="if(event.key==='Enter') showPlans()"
+    >
+
+    <div
+      id="uidHelp"
+      style="color:#777;font-size:11px;margin-top:6px">
+
+      UID is used only for this fan-page interface.
+
+    </div>
+
+    <button
+      class="main-btn"
+      type="button"
+      onclick="showPlans()">
+
+      Continue
+
+    </button>
+
+    <div
+      id="live"
+      class="live"
+      role="status"
+      aria-live="polite">
+    </div>
+
+  </section>
+
+  <!-- DASHBOARD -->
+  <section
+    id="dashboard"
+    class="section hidden"
+    aria-labelledby="dashboardTitle">
+
+    <h2 id="dashboardTitle">
+      👤 Account
+    </h2>
+
+    <div class="profile">
+
+      <div>
+        <span>UID</span>
+        <strong id="displayUID">—</strong>
+      </div>
+
+      <div>
+        <span>Status</span>
+        <strong class="green">
+          Active
+        </strong>
+      </div>
+
+    </div>
+
+    <h2 style="margin-top:22px">
+      💎 Monthly Subscriptions
+    </h2>
+
+    <!-- PLAN 1 -->
+    <article class="plan">
+
+      <h2>
+        Monthly Starter
+      </h2>
+
+      <span class="old">
+        ₹549
+      </span>
+
+      <div class="price">
+        ₹149
+      </div>
+
+      <div class="title">
+       19 Monthly Subscription
+      </div>
+
+      <div class="features">
+        ✓ Monthly reward<br>
+        ✓ Subscription access<br>
+        ✓ Account summary
+      </div>
+
+      <button
+        type="button"
+        onclick="selectPlan('Monthly Starter','₹49')">
+
+        Select Plan
+
+      </button>
+
+    </article>
+
+    <!-- PLAN 2 -->
+    <article class="plan popular">
+
+      <div class="badge">
+        POPULAR
+      </div>
+
+      <h2>
+        Premium Monthly
+      </h2>
+
+      <span class="old">
+        ₹1,149
+      </span>
+
+      <div class="price">
+        ₹499
+      </div>
+
+      <div class="title">
+       49 Monthly Subscription
+      </div>
+
+      <div class="features">
+        ✓ Premium monthly reward<br>
+        ✓ Extra benefits<br>
+        ✓ Priority access
+      </div>
+
+      <button
+        type="button"
+        onclick="selectPlan('Premium Monthly','₹499')">
+
+        Select Premium
+
+      </button>
+
+    </article>
+
+    <!-- REWARD -->
+    <div class="reward">
+
+      <h3>
+        🎁 Monthly Reward
+      </h3>
+
+      <p>
+        Select a subscription to view your reward summary.
+      </p>
+
+    </div>
+
+    <!-- ACTIVITY -->
+    <div class="activity">
+
+      <h3>
+        🕒 Recent Activity
+      </h3>
+
+      <div class="activity-row">
+        <span>Balance check</span>
+        <span class="green">Done</span>
+      </div>
+
+      <div class="activity-row">
+        <span>UID status</span>
+        <span class="green">Ready</span>
+      </div>
+
+      <div class="activity-row">
+        <span>Subscription</span>
+        <span>Not selected</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PAYMENT -->
+  <section
+    id="payment"
+    class="section hidden"
+    aria-labelledby="paymentTitle">
+
+    <h2 id="paymentTitle">
+      💳 Payment Options
+    </h2>
+
+    <div class="summary">
+
+      <div>
+        Plan:
+        <strong id="chosenPlan">
+          —
+        </strong>
+      </div>
+
+      <div style="margin-top:8px">
+        Amount:
+        <strong id="chosenPrice">
+          —
+        </strong>
+      </div>
+
+    </div>
+
+    <p style="color:#999;font-size:13px">
+      Choose a payment method for the fan-page simulation.
+    </p>
+
+    <div
+      class="pay"
+      tabindex="0"
+      role="button"
+      onclick="demoPay('UPI')"
+      onkeydown="keyboardPay(event,'UPI')">
+
+      📱 UPI
+
+    </div>
+
+    <div
+      class="pay"
+      tabindex="0"
+      role="button"
+      onclick="demoPay('Card')"
+      onkeydown="keyboardPay(event,'Card')">
+
+      💳 Debit / Credit Card
+
+    </div>
+
+    <div
+      class="pay"
+      tabindex="0"
+      role="button"
+      onclick="demoPay('Wallet')"
+      onkeydown="keyboardPay(event,'Wallet')">
+
+      👛 Wallet
+
+    </div>
+
+    <button
+      class="back"
+      type="button"
+      onclick="backToPlans()">
+
+      ← Back to Plans
+
+    </button>
+
+  </section>
+
+  <!-- CONFIRMATION -->
+  <section
+    id="confirmation"
+    class="confirm section hidden"
+    aria-live="polite">
+
+    <div class="check">
+      ✅
+    </div>
+
+    <h2>
+      Selection Complete
+    </h2>
+
+    <p id="confirmationText">
+      No real payment was processed.
+    </p>
+
+    <button
+      class="main-btn"
+      type="button"
+      onclick="restart()">
+
+      Choose Another Plan
+
+    </button>
+
+  </section>
+
+  <footer class="footer">
+    Fan-made interface • No real payment processing
+  </footer>
+
+</main>
+
+<script>
+
+let selectedPlan = "";
+let selectedPrice = "";
+
+function showPlans(){
+
+  const uid =
+    document.getElementById("uid").value.trim();
+
+  if(uid.length < 5){
+
+    document.getElementById("live").textContent =
+      "Please enter a UID with at least 5 digits.";
+
+    document.getElementById("uid").focus();
+
+    return;
+  }
+
+  document.getElementById("displayUID").textContent =
+    uid;
+
+  document.getElementById("dashboard")
+    .classList.remove("hidden");
+
+  document.getElementById("live").textContent =
+    "UID accepted. Plans are ready.";
+
+  document.getElementById("dashboard")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+}
+
+function selectPlan(plan,price){
+
+  selectedPlan = plan;
+  selectedPrice = price;
+
+  document.getElementById("chosenPlan")
+    .textContent = plan;
+
+  document.getElementById("chosenPrice")
+    .textContent = price;
+
+  document.getElementById("dashboard")
+    .classList.add("hidden");
+
+  document.getElementById("payment")
+    .classList.remove("hidden");
+
+  document.getElementById("payment")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+}
+
+function keyboardPay(event,method){
+
+  if(event.key === "Enter" ||
+     event.key === " "){
+
+    event.preventDefault();
+
+    demoPay(method);
+  }
+}
+
+function demoPay(method){
+
+  document.getElementById("payment")
+    .classList.add("hidden");
+
+  document.getElementById("confirmation")
+    .classList.remove("hidden");
+
+  document.getElementById("confirmationText")
+    .textContent =
+    "Selected " +
+    selectedPlan +
+    " (" +
+    selectedPrice +
+    ") using " +
+    method +
+    ". No real payment was processed.";
+
+  document.getElementById("confirmation")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+}
+
+function backToPlans(){
+
+  document.getElementById("payment")
+    .classList.add("hidden");
+
+  document.getElementById("dashboard")
+    .classList.remove("hidden");
+
+  document.getElementById("dashboard")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+}
+
+function restart(){
+
+  document.getElementById("confirmation")
+    .classList.add("hidden");
+
+  document.getElementById("dashboard")
+    .classList.remove("hidden");
+
+  document.getElementById("dashboard")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+}
+
+</script>
+
+</body>
+</html>
